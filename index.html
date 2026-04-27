@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Enneagram!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <section id="intro-screen" class="active">
+            <div class="symbol-wrapper"><img class="main-symbol" src="images/enneagram.png" alt="Enneagram symbol"></div>
+            <h1>Learn Enneagram!</h1>
+            <div class="title-row">
+                <p>Why Learn the theory of Enneagram?</p>
+                <div class="info-container">
+                    <span class="info-icon">i</span>
+                    <div class="tooltip-box">
+                        <p>This theory offers a perspective about how to understand the motivations of the self and others.</p>
+                        <p class="pt-2"><strong>The objectives of this tutorial:</strong></p>
+                        <ul>
+                            <li>When reading a description, identify the best fitting enneatype for an individual based on how well it matches with the description.</li>
+                            <li>If uncertain about an enneatype based on the description, identify the main traits that align with a motivation, strength, or weakness of an enneatype</li>    
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="home-buttons">
+                <button onclick="showScreen('learn-screen')">Learn about each type</button>
+                <button onclick="startPractice()">Try Practice Scenarios</button>
+                <button onclick="startQuiz()">Take the quiz!</button>
+            </div>
+        </section>
+
+        <section id="learn-screen">
+            <button class="home-btn" onclick="showScreen('intro-screen')">Home</button>
+            <h1 id="type-title"><strong>The Reformer</strong></h1>
+            <h2>Enneatype <span id="type-number">1</span></h2>
+            
+            <div id="type-content">
+                <div class="icon-wrapper">
+                    <img id="type-icon" src="" alt="Type Icon">
+                </div>
+                <p id="type-example" class="scenario-text"></p>
+
+                <details class="traits-dropdown">
+                    <summary>View Primary Traits</summary>
+                    <div class="dropdown-inner">
+                        <p><strong>Core Motivation:</strong> <span id="type-motivation"></span></p>
+                        <p><strong>Key Strengths:</strong> <span id="type-strengths"></span></p>
+                        <p><strong>Common Weaknesses:</strong> <span id="type-weaknesses"></span></p>
+                    </div>
+                </details>
+            </div>
+            <div id="number-nav-row" class="number-row"></div>
+            <div class="nav-buttons">
+                <button onclick="prevType()">← Previous Type</button>
+                <button onclick="nextType()">Next Type →</button>
+            </div>
+            
+        </section>
+
+        <section id="practice-screen">
+            <button class="home-btn" onclick="showScreen('intro-screen')">Home</button>
+            
+            <div class="practice-header">
+                <h2>Practice Scenario <span id="practice-count">1</span> of 9</h2>
+            </div>
+
+            <div id="practice-container" class="quiz-box">
+                <div class="scenario-display">
+                    <p id="practice-scenario"></p>
+                </div>
+                
+                <form id="practice-form" onsubmit="handlePracticeSubmit(event)">
+                    <div id="practice-options" class="radio-group"></div>
+                    <div class="practice-actions">
+                        <button type="submit" id="submit-practice-btn" class="main-btn">Submit Answer</button>
+                        <button type="button" id="help-btn" class="help-link-btn" onclick="showRemediation()">
+                            <span class="icon">💡</span> Help Me Figure It Out
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="practice-feedback" class="feedback-box hidden"></div>
+                <button id="next-practice" class="hidden main-btn" onclick="loadNextPractice()">Next Scenario →</button>
+            </div>
+        </section>
+
+        <section id="quiz-screen">
+            <button class="home-btn" onclick="showScreen('intro-screen')">Home</button>
+            <h2>Final Assessment</h2>
+            
+            <div class="practice-header">
+                <p>Question <span id="quiz-count">1</span> of 6</p>
+            </div>
+
+            <div id="quiz-container">
+                <div class="scenario-display">
+                    <p id="quiz-question-text"></p>
+                </div>
+
+                <form id="quiz-form" onsubmit="handleQuizSubmit(event)">
+                    <div id="quiz-options" class="radio-group"></div>
+                    
+                    <div class="practice-actions">
+                        <button type="submit" id="quiz-submit-btn" class="main-btn">Submit Answer</button>
+                    </div>
+                </form>
+
+                <div id="quiz-feedback" class="feedback-box hidden"></div>
+                <button id="next-quiz-btn" class="hidden main-btn" onclick="nextQuizQuestion()">Continue →</button>
+            </div>
+        </section>
+
+        <section id="results-screen">
+            <div class="result-card">
+                <div class="result-icon" id="result-emoji">🎓</div>
+                <h2>Final Assessment Complete</h2>
+                
+                <div class="score-display">
+                    <p>Your Final Score:</p>
+                    <h1 id="final-score-text">0 / 6</h1>
+                    <p id="final-percentage" class="percentage-text">0%</p>
+                </div>
+
+                <p id="result-message" class="result-feedback"></p>
+
+                <div class="result-buttons">
+                    <button class="main-btn" onclick="startQuiz()">Retry Quiz</button>
+                    <button class="secondary-btn" onclick="showScreen('intro-screen')">Back to Home</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

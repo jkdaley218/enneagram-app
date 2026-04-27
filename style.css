@@ -1,0 +1,367 @@
+body {
+    background-color: #d1c4e9; /* Light purple background */
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+section {
+    position: relative;
+    padding-top: 50px;
+    display: none;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 80%;
+    max-width: 500px;
+}
+
+section.active { display: block; }
+
+button {
+    background-color: #311b92;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.home-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px !important;
+    margin-top: 20px;
+}
+
+.home-buttons button {
+    margin: 0; 
+}
+
+.hidden { display: none; }
+
+
+.info-container {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+}
+
+
+.info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: #311b92; /* Matching your purple theme */
+    color: white;
+    border-radius: 50%;
+    font-size: 14px;
+    font-family: serif;
+    font-style: italic;
+    font-weight: bold;
+}
+
+
+.tooltip-box {
+    display: none; 
+    position: absolute;
+    top: 30px;    
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    background-color: white;
+    color: #333;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+    z-index: 100; /* Ensure it stays on top */
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.info-container:hover .tooltip-box {
+    display: block;
+}
+
+.tooltip-box::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+}
+
+.title-row {
+    display: flex;       
+    align-items: center;   
+    justify-content: center; 
+    gap: 10px;             
+}
+
+.title-row p {
+    margin: 0;             
+}
+
+.pt-2 {
+    padding-top: 0.5rem;
+}
+
+.home-btn {
+    position: absolute;
+    top: 15px;    
+    right: 15px; 
+    margin: 0;   
+    
+    padding: 5px 12px;
+    font-size: 0.8rem;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;          
+    width: 100%;                   
+    margin-top: 20px;               
+    box-sizing: border-box;         
+}
+
+.number-row {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; 
+    margin-top: 20px;
+}
+
+.num-nav-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid #311b92;
+    background: white;
+    color: #311b92;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; 
+}
+
+.num-nav-btn:hover {
+    background: #d1c4e9;
+}
+
+.num-nav-btn.active-type {
+    background: #311b92;
+    color: white;
+}
+
+.scenario-text {
+    font-style: italic;
+    background: #f3f0ff;
+    padding: 15px;
+    border-left: 5px solid #311b92;
+    margin: 20px 0;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.traits-dropdown {
+    background: #fff;
+    border: 1px solid #311b92;
+    border-radius: 8px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.traits-dropdown summary {
+    padding: 10px;
+    font-weight: bold;
+    color: #311b92;
+    outline: none;
+}
+
+.dropdown-inner {
+    padding: 15px;
+    text-align: left;
+    border-top: 1px solid #d1c4e9;
+    font-size: 0.9rem;
+}
+
+.icon-wrapper {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 15px auto;
+    background-color: #f3f0ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #311b92;
+    overflow: hidden; 
+}
+
+#type-icon {
+    width: 70%; 
+    height: auto;
+}
+
+.symbol-wrapper {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px auto; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-symbol {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.2));
+}
+
+.diagnostic-path {
+    background-color: #fff9c4; /* Soft yellow for a 'teaching' feel */
+    border: 2px dashed #fbc02d;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+    margin-top: 10px;
+    color: black;
+}
+
+.hint-text {
+    color: #311b92 !important;
+    font-weight: bold;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.success-reinforcement {
+    text-align: left;
+    line-height: 1.5;
+}
+
+.success-reinforcement strong {
+    color: #2e7d32;
+}
+
+.feedback-box.success {
+    background-color: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    color: #2e7d32;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.feedback-box.success { color: green; border: 1px solid green; background: #e8f5e9; padding: 10px; }
+.feedback-box.error { color: red; border: 1px solid red; background: #ffebee; padding: 10px; }
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.radio-option:hover {
+    background-color: #f9f9f9;
+}
+
+.radio-option input {
+    margin-right: 15px;
+    transform: scale(1.2);
+}
+
+.help-link-btn {
+    background: none;
+    border: 1px dashed #311b92;
+    color: #311b92;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+
+.help-link-btn:hover {
+    background-color: #fff9c4;
+    border-style: solid;
+}
+
+.practice-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+.score-display {
+    background: #f3f0ff;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+#final-score-text {
+    font-size: 3rem;
+    color: #4834d4;
+    margin: 5px 0;
+}
+
+.percentage-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #686de0;
+}
+
+.result-feedback {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 25px;
+    padding: 0 10px;
+}
+
+.result-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px !important;
+}
+
+.result-buttons button{
+    margin: 0px;
+}

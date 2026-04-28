@@ -472,18 +472,18 @@ function handlePracticeSubmit(event) {
     const feedback = document.getElementById('practice-feedback');
     const nextBtn = document.getElementById('next-practice');
     
+    const radioButtons = event.target.querySelectorAll('input[type="radio"]');
+
     if (selectedIndex === data.correct) {
+        radioButtons.forEach(radio => radio.disabled = true);
 
-        const goalLower = data.remediation.goal.toLowerCase();
-        const traitLower = data.remediation.trait.toLowerCase();
-
-        const cleanGoal = goalLower.endsWith('.') ? goalLower.slice(0, -1) : goalLower;
-        const cleanTrait = traitLower.endsWith('.') ? traitLower.slice(0, -1) : traitLower;
+        const goalLower = data.remediation.goal.toLowerCase().replace(/\.$/, "");
+        const traitLower = data.remediation.trait.toLowerCase().replace(/\.$/, "");
 
         feedback.innerHTML = `
             <div class="success-reinforcement">
                 <p>✅ <strong>Correct!</strong></p>
-                <p>This is <strong>${data.options[data.correct]}</strong> because their core motivation is <strong>${cleanGoal}</strong> and they demonstrate being <strong>${cleanTrait}</strong>.</p>
+                <p>This is <strong>${data.options[data.correct]}</strong> because their core motivation is <strong>${goalLower}</strong> and they demonstrate being <strong>${traitLower}</strong>.</p>
             </div>
         `;
         feedback.className = "feedback-box success";
@@ -645,18 +645,16 @@ function handleQuizSubmit(event) {
     const selected = parseInt(formData.get('quiz-choice'));
     const data = activeQuizData[currentQuizIndex];
     const feedback = document.getElementById('quiz-feedback');
+    
+    const radioButtons = event.target.querySelectorAll('input[type="radio"]');
+    radioButtons.forEach(radio => radio.disabled = true);
 
     if (selected === data.correct) {
         quizScore++;
-        if (data.remediation) {
-            const goal = data.remediation.goal.toLowerCase().replace(/\.$/, "");
-            feedback.innerHTML = `✅ <strong>Correct!</strong> This type is motivated by ${goal}.`;
-        } else {
-            feedback.innerHTML = "✅ <strong>Correct!</strong> Your recall of this type is accurate.";
-        }
+        feedback.innerHTML = "✅ <strong>Correct!</strong>";
         feedback.className = "feedback-box success";
     } else {
-        feedback.innerHTML = "❌ <strong>Incorrect.</strong> The assessment will move to the next item.";
+        feedback.innerHTML = "❌ <strong>Incorrect.</strong>";
         feedback.className = "feedback-box error";
     }
 
